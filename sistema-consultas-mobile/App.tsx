@@ -16,11 +16,25 @@ export default function App() {
     descricao: "Cuidados com o coração",
   };
 
+  const ortopedia: Especialidade = {
+    id: 2,
+    nome: "Ortopedia",
+    descricao: "Cuidados com os ossos e articulações",
+  };
+
   const medico1: Medico = {
     id: 1,
     nome: "Dr. Roberto Silva",
     crm: "CRM12345",
     especialidade: cardiologia,
+    ativo: true,
+  };
+
+  const medico2: Medico = {
+    id: 2,
+    nome: "Dra. Ana Pereira",
+    crm: "CRM67890",
+    especialidade: ortopedia,
     ativo: true,
   };
 
@@ -32,6 +46,15 @@ export default function App() {
     telefone: "(11) 98765-4321",
   };
 
+  const paciente2: Paciente = {
+    id: 2,
+    nome: "Mariana Costa",
+    cpf: "987.654.321-00",
+    email: "mariana@email.com",
+    telefone: "(11) 98765-4321",
+  };
+
+
   // Estado da consulta
   const [consulta, setConsulta] = useState<Consulta>({
     id: 1,
@@ -41,6 +64,16 @@ export default function App() {
     valor: 350,
     status: "agendada",
     observacoes: "Consulta de rotina",
+  });
+
+  const [consulta2, setConsulta2] = useState<Consulta>({
+    id: 2,
+    medico: medico2,
+    paciente: paciente2,
+    data: new Date(2026, 3, 15), // 15/04/2026
+    valor: 450,
+    status: "agendada",
+    observacoes: "Consulta para avaliação de dor no joelho",
   });
 
   // Funções para manipular a consulta
@@ -55,6 +88,13 @@ export default function App() {
     setConsulta({
       ...consulta,
       status: "cancelada",
+    }); 
+  }
+
+  function resetarConsulta() {
+    setConsulta({
+      ...consulta,
+      status: "agendada",
     });
   }
 
@@ -162,7 +202,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#79059C",
+    backgroundColor: "#394fce",
   },
   scrollContent: {
     padding: 20,
